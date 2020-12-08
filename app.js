@@ -57,24 +57,23 @@ function deleteCheck(event) {
     }
 };
 
+//SOLVED! the error was caused at line 69... the "...classList.contains" couldn't iterate over the <ul> because of 'invisible' white space between the opening and closing tags causing Text nodes.
 
 function filterTodo(e) {
     const todos = todoList.childNodes;
-    todos.forEach(function(todo) {
-        console.log(todo.classList.contains("completed"))
+    todos.forEach(function(todo){
+        switch(e.target.value){
+            case "all":
+                break;
+            case "completed":
+                if(todo.classList.contains('completed')){
+                    todo.style.display = "flex";
+                } else {
+                    todo.style.display= "none";
+                }
+                break;
 
-        // switch(e.target.value){
-        //     case "all":
-        //         console.log(todo.classList.contains("completed"))
-        //         todo.style.display = "flex";
-        //         break;
-        //     case "completed":
-        //         if(todo.classList.contains("completed")){
-        //             todo.style.display = "flex";
-        //         } else {
-        //             todo.style.display = "none";
-        //         }
-        //         break;
-        // }
+        }
     })
 }
+   
